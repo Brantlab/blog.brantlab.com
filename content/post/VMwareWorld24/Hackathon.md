@@ -33,14 +33,13 @@ The new goal was to use ringcentral prompt with a crafted wav file and upload it
 
 Ok I seem to have a plan. Lets go ahead and work through this. 
 
-{{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
-
 We began by creating a new N8N workflow with a time based tirgger. This only needs kicked off once a day at 2:45 PM EST time. This leads right into a API call to DTN that gets grain data. This data come back as JSON and I will include a snippet of that data. 
 
-# Picture of phase1
+{{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
 
-
+test
 {{< details title="JSON of Data example" >}}
+Test
 ``` json
 [
   {
