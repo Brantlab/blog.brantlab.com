@@ -1,6 +1,13 @@
 <details>
     <summary>{{ .Get "title" | default "Click to expand" | markdownify }}</summary>
     <div>
-        <img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "Image" }}">
+        <img 
+            src="{{ .Get "src" }}" 
+            alt="{{ .Get "alt" | default "Image" }}"
+            style="width: {{ .Get "width" | default "auto" }};"
+            class="{{ .Get "class" }}"
+            loading="lazy"
+            {{ if eq ( .Get "layout" ) "responsive" }}style="max-width:100%; height:auto;"{{ end }}
+        >
     </div>
 </details>
