@@ -38,7 +38,7 @@ We began by creating a new N8N workflow with a time based tirgger. This only nee
 {{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
 
 test
-{{< details title="JSON of Data example" >}}
+{{< details title="JSON of Data example" >}} TEST
 Test
 ``` json
 [
