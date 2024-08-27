@@ -720,11 +720,8 @@ ssml += `Commodity sales are based off the Redacted Website at Redacted.com
 
 Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple restAPI post call to https://eastus.tts.speech.microsoft.com/cognitiveservices/v1.
 
-{{< details title="I have provided a screenshot with headers that I used to get my WAV file." >}}
-{{< figure src="/img/Hackathon24/AzureTTS.png" width=75% layout="responsive" >}}
-{{< /details>}}
 
-
+{{< collapsible-image title="I have provided a screenshot with headers that I used to get my WAV file." src="/img/Hackathon24/AzureTTS.png" width=75% layout="responsive" >}}
 
 
 

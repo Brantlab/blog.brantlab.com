@@ -1,0 +1,6 @@
+<details>
+    <summary>{{ .Get "title" | default "Click to expand" | markdownify }}</summary>
+    <div>
+        <img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "Image" }}">
+    </div>
+</details>
