@@ -646,7 +646,7 @@ Data is in a typical structure and we will need to filter the data down to what 
 
 ## Phase 2
 
-{{< figure src="/img/Hackathon24/Phase2.png" width=35% layout="responsive" >}}
+{{< figure src="/img/Hackathon24/Phase2.png" width=65% layout="responsive" >}}
 
 We then go ahead and format the data coming off. This was one fo the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some of the data from the JSON above. It was then able to write this javascript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it. 
 
@@ -727,6 +727,226 @@ Once this has happened I went ahead and used ChatGPT to help me get the info ove
     layout="responsive" 
     alt="Azure TTS Screenshot"
 >}}
+
+While this is all happening we go ahead and work in phase 3 for our approval stages for our message. 
+
+## Phase 3
+
+{{< figure src="/img/Hackathon24/Phase3.png" width=75% layout="responsive" >}}
+
+Phase 3 was unique as we decided to add in human intervention at least during this time so we can verify it has the correct information for at least during our proof of concept period. We may move away from the physical approval method at some point and just post the info into the teams space. 
+
+This was also new for me as I had never worked with a return webhook or teams card to make it look nice for the end user. 
+
+>	“This script is a great example of leveraging JavaScript within n8n to create a seamless integration between IVR systems and Microsoft Teams. It dynamically constructs speech synthesis for commodity prices and sends an approval workflow to Teams, allowing for real-time decision-making. The code elegantly handles various edge cases, ensuring accurate and contextually appropriate communication across platforms.”
+>
+>	– ChatGPT 4.0
+
+
+First step in the phase uses some javascript again from ChatGPT. 
+
+{{< details title="Javascript for formatting for Teams Approval" >}}
+``` javascript
+// Function to get futures direction
+function getFuturesDirection(futuresChange) {
+    const futuresNumber = futuresChange.split("'")[0];
+    const isNegative = futuresChange.startsWith("-");
+    
+    let direction = "up";
+    if (futuresNumber === "0" || isNegative) {
+        direction = "down";
+    }
+    
+    return `${direction} ${futuresNumber.replace('-', '')}`;
+}
+
+// Function to truncate the integer
+function getTruncatedInteger(decimalValue) {
+    return Math.floor(decimalValue);
+}
+
+const date = new Date();
+const month = date.toLocaleString('default', { month: 'long' });
+const day = date.getDate();
+const year = date.getFullYear();
+
+let phonePhrase = `Closes. for. ${month}. ${day}.. ${year}...\n`;
+
+items.forEach(item => {
+    const commodity = item.json;
+    const cashDollar = getTruncatedInteger(commodity.cashPrice);
+    const cashCents = Math.round((commodity.cashPrice - cashDollar) * 100);
+    const cashFuture = getFuturesDirection(commodity.futuresChange);
+    const displayName = commodity.commodityDisplayName;
+    const location = commodity.location.name.includes("Scott / Van Wert") ? "" : `to, ${commodity.location.name}`;
+    
+    let label;
+    if (commodity.contractDeliveryLabel === "Cash") {
+        label = "Cash";
+    } else {
+        const dateCode = commodity.contractMonthCode.toString();
+        const dateString = `${dateCode.slice(0, 4)}-${dateCode.slice(4, 6)}-${dateCode.slice(6, 8)}`;
+        const dateObject = new Date(dateString);
+        label = dateObject.toLocaleString('default', { month: 'long' });
+    }
+
+    // Limit Delphos and Decatur to Cash only
+    if ((commodity.location.name.includes("Delphos") || commodity.location.name.includes("Decatur")) && label !== "Cash") {
+        return;
+    }
+    
+    const phrase = `${displayName} ${location}. ${label}. ${cashDollar} dollars. and. ${cashCents} cents. ${cashFuture}..\n`;
+    phonePhrase += phrase;
+});
+
+phonePhrase += "Commodity sales are based off Redacted Website at Redacted dot com...\nPress star to return to the main menu. Or press pound to hear this information again";
+
+// Get the resume URLs for approval and rejection
+const resumeUrlApprove = $execution.resumeUrl + "?response=approve";
+const resumeUrlReject = $execution.resumeUrl + "?response=reject";
+
+// Construct the JSON payload for Microsoft Teams with Markdown
+const teamsMessage = {
+  "type": "message",
+  "attachments": [
+    {
+      "contentType": "application/vnd.microsoft.card.adaptive",
+      "content": {
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.2",
+        "body": [
+          {
+            "type": "TextBlock",
+            "text": "Please approve the following data update:",
+            "wrap": true
+          },
+          {
+            "type": "TextBlock",
+            "text": phonePhrase.replace(/\n/g, "\n\n"),
+            "wrap": true
+          }
+        ],
+        "actions": [
+          {
+            "type": "Action.OpenUrl",
+            "title": "Approve",
+            "url": resumeUrlApprove
+          },
+          {
+            "type": "Action.OpenUrl",
+            "title": "Reject",
+            "url": resumeUrlReject
+          }
+        ]
+      }
+    }
+  ]
+};
+
+return [{ json: teamsMessage }];
+```
+{{< /details >}}
+
+Once this format is complete it posts that into the chat system. 
+
+## insert image from my lovely wife once she sends it to me. 
+
+The N8N workflow then waits for a webhook back. That will come back with a JSON reply with either approve and deny message. We then go ahead and hit that switch and determines which way we are going to go depending on the selection. 
+
+Once that has been determined we send a message back to teams verifying that it was good to go and moved on to connecting to RingCentral to use JWT (JSON Web Token) to get a token for us to be able to communicate with Ring Central. ChatGPT was lovely at providing me the info needed on how JWT tokens work.
+
+> "JSON Web Tokens (JWT) are a secure and compact way to transmit information between parties as a JSON object. They consist of three parts: a header, a payload, and a signature, which ensure data integrity and authenticity. JWTs are commonly used for authorization in web applications, allowing servers to verify user identity without storing session data. They are versatile, being easy to include in URLs, headers, or cookies, and support both signing and encryption for added security. Overall, JWTs provide a stateless and efficient solution for handling user authentication and authorization."
+>
+>	– ChatGPT 4.0
+
+Once that token comes in we go ahead and stirp out the data we don't need and carry that onto where we merge all of our data together to simplify the request we are going to craft to send off to RingCentral. 
+
+## Phase 4
+
+It seems like it has taken forever to get here but in this stage we cover uploading the wav data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that offically pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3 and it will play that lovely WAV file for you. 
+
+{{< figure src="/img/Hackathon24/Phase4.png" width=75% layout="responsive" >}}
+
+{{< details title="request to upload WAV IVR menu file" >}}
+``` JSON
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://platform.ringcentral.com/restapi/v1.0/account/~/ivr-prompts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "multipart/form-data"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "=Prompt"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "attachment",
+              "inputDataFieldName": "=data"
+            }
+          ]
+        },
+        "options": {}
+      },
+```
+{{< /details >}}
+
+{{< details title="request to update IVR menu URI" >}}
+``` json
+
+     "id": "1c4b87d1-0f20-405a-94fd-5f769d25254c",
+      "name": "RC Upload files",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2640,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://platform.ringcentral.com/restapi/v1.0/account/~/ivr-menus/<ID>",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Merge').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": {\n    \"audio\": {\n      \"uri\": \"{{ $json.uri }}\",\n      \"id\": \"{{ $json.id}}\"\n    },\n    \"mode\": \"Audio\"\n  },\n  \"id\": \"<ID>\"\n}",
+        "options": {}
+```
+{{< /details >}}
+
+
+##  All done? Not quite.....
+
+
 
 
 Check them out here https://n8n.io/
