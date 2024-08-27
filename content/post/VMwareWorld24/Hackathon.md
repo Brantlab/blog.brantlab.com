@@ -33,13 +33,13 @@ The new goal was to use ringcentral prompt with a crafted wav file and upload it
 
 Ok I seem to have a plan. Lets go ahead and work through this. 
 
+## Phase 1
+
 We began by creating a new N8N workflow with a time based tirgger. This only needs kicked off once a day at 2:45 PM EST time. This leads right into a API call to DTN that gets grain data. This data come back as JSON and I will include a snippet of that data. 
 
 {{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
 
-test
-{{< details title="JSON of Data example" >}} TEST
-Test
+{{< details title="JSON of Data example" >}}
 ``` json
 [
   {
@@ -641,6 +641,70 @@ Test
 {{< /details >}}
 
 
+## Phase 2
+
+We then go ahead and move on to 
+
+{{< details title="Javascript for formatting IVR Prompt for Azure TTS" >}}
+``` javascript
+function getFuturesDirection(futuresChange) {
+    const futuresNumber = futuresChange.split("'")[0];
+    const isNegative = futuresChange.startsWith("-");
+    
+    let direction = "up";
+    if (futuresNumber === "0" || isNegative) {
+        direction = "down";
+    }
+    
+    return `${direction} ${futuresNumber.replace('-', '')}.`;
+}
+
+function getTruncatedInteger(decimalValue) {
+    return Math.floor(decimalValue);
+}
+
+const date = new Date();
+const month = date.toLocaleString('default', { month: 'long' });
+const day = date.getDate();
+const year = date.getFullYear();
+
+let ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
+  <voice name="en-US-JennyNeural">
+    Closes for ${month} ${day}, ${year}. `;
+
+items.forEach(item => {
+    const commodity = item.json;
+    const cashDollar = getTruncatedInteger(commodity.cashPrice);
+    const cashCents = Math.round((commodity.cashPrice - cashDollar) * 100);
+    const cashFuture = getFuturesDirection(commodity.futuresChange);
+    const displayName = commodity.commodityDisplayName;
+    const location = commodity.location.name.includes("Scott / Van Wert") ? "" : `to ${commodity.location.name}`;
+    
+    let label;
+    if (commodity.contractDeliveryLabel === "Cash") {
+        label = "Cash";
+    } else {
+        const dateCode = commodity.contractMonthCode.toString();
+        const yearPart = dateCode.slice(0, 4);
+        const monthPart = dateCode.slice(4, 6);
+        const dateObject = new Date(`${yearPart}-${monthPart}-01`);
+        label = `${dateObject.toLocaleString('default', { month: 'long' })},`; // Adding comma after the month
+    }
+
+    // Limit Delphos and Decatur to Cash only
+    if ((commodity.location.name.includes("Delphos") || commodity.location.name.includes("Decatur")) && label !== "Cash") {
+        return;
+    }
+    
+    ssml += `${displayName} ${location} ${label} ${cashDollar} dollars and ${cashCents} cents ${cashFuture} `;
+});
+
+ssml += `Commodity sales are based off the Redacted Website at Redacted.com 
+  Press star to return to the main menu or press pound to hear this information again
+  </voice></speak>`;
+
+```
+{{< /details >}}
 
 
 
