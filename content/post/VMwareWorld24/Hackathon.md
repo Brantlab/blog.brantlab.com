@@ -641,9 +641,18 @@ We began by creating a new N8N workflow with a time based tirgger. This only nee
 {{< /details >}}
 
 
+Data is in a typical structure and we will need to filter the data down to what we need. We do this with a bit of javascript in the next step. 
+
+
 ## Phase 2
 
-We then go ahead and move on to 
+{{< figure src="/img/Hackathon24/Phase2.png" width=35% layout="responsive" >}}
+
+We then go ahead and format the data coming off. This was one fo the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some of the data from the JSON above. It was then able to write this javascript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it. 
+
+> "In this n8n workflow, I created a function to dynamically generate SSML (Speech Synthesis Markup Language) for a TTS (Text-to-Speech) system that reports daily commodity prices. The workflow processes data by extracting and formatting relevant information, such as cash prices and futures changes, and composes it into a natural-sounding spoken report. The code includes logic to handle various cases, like specific locations or contract delivery labels, ensuring that the information is accurately conveyed in a user-friendly format. This automation is tailored for an IVR (Interactive Voice Response) system, enabling users to receive up-to-date commodity prices through voice prompts." 
+>
+> – ChatGPT 4.0
 
 {{< details title="Javascript for formatting IVR Prompt for Azure TTS" >}}
 ``` javascript
@@ -705,6 +714,15 @@ ssml += `Commodity sales are based off the Redacted Website at Redacted.com
 
 ```
 {{< /details >}}
+
+{{< figure src="/img/Hackathon24/functionATTS.png" width=35% layout="responsive" >}}
+
+
+Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple restAPI post call to https://eastus.tts.speech.microsoft.com/cognitiveservices/v1.
+
+I have provided a screenshot with headers that I used to get my WAV file.
+{{< figure src="/img/Hackathon24/AzureTTS.png" width=35% layout="responsive" >}}
+
 
 
 
