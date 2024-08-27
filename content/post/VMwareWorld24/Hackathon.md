@@ -946,7 +946,27 @@ It seems like it has taken forever to get here but in this stage we cover upload
 
 ##  All done? Not quite.....
 
+One challenge that neither ChatGPT or I could solve was the WAV file is always named "v1" and if we changed the name with N8N we lost the binary data. The prompt upload would no respect the name field and alwaus named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn't condusive if there was an issue or if they had other prompts they wanted to keep around. 
+
+## Phase 5 
+
+{{< figure src="/img/Hackathon24/Phase5.png" width=75% layout="responsive" >}}
+
+This was a bit of a challenge due to having to array data and bringing it into flat data so we had to break it down and then do another query to determine what was actually in used. 
+
+The flatten looks similar in both functions
+
+``` javascript
+const ivrMenus = $json.records;
+return ivrMenus.map(menu => {
+  return { json: menu };
+});
+```
+
+Once that data is flat we can then filter and compare data. We apply a simple filter that filters out any TTS prompts so we are left with only audio prompts. This allows us to compare the IVR prompt audio file URIs and determine which ones are no longer used and remove them to keep the environment clean. 
 
 
+## Synopsis
+This was a great project even if there were times I thought it was taking years off my life but with the help of ChatGPT as almost dare I say a colleague helping step through, talk, and learn. I learned about JWT's, formatting data, Javascript, and troubleshooting API challenges with limited support. 
 
 Check them out here https://n8n.io/
