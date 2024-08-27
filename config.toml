@@ -1,4 +1,4 @@
-baseURL = "https://brantlab.com"
+baseURL = "https://blog.brantlab.com"
 title = "Justin Brant"
 theme = "hugo-lamp"
 paginate = 5
