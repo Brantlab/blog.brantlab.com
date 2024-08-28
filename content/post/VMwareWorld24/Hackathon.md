@@ -10,19 +10,19 @@ draft: false
 
 ## What is the goal?
 
-This year for the hackathon at VMware Explore I was unsure I would be able to attend so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don't you guys do something with ChatGPT. We decided to use a project I had actually worked on prior to arriving at the hackathon. 
+This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don't you guys do something with ChatGPT. We decided to use a project I had actually worked on prior to arriving at the hackathon. 
 
-## Whats the problem?
+## What's the problem?
 
-My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office and they will have wood paneling, They had a phone system but was limited to each facility and was not inter-connected between sites. Not related but made this request possible is we migrated them off old copper and onto a VOIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially its their version of the stock market. This was a very manual process. 
+My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office, and they will have wood paneling, They had a phone system but was limited to each facility and was not interconnected between sites. Not related but made this request possible is we migrated them off old copper and onto a VoIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially it's their version of the stock market. This was a very manual process. 
 
 ## How do we solve this? 
 
 On their website for the company they pay for a service called DTN that allows us API calls to grab that grain data and show it on their website. Excellent. This helps us by giving us our first step and didn't hard stop this idea. My idea was to grab data, format it, and upload it to RingCentrals IVR text to speech API for IVR Prompts. We have the plan. 
 
-## Lets discuss the issue with said plan.
+## Let's discuss the issue with said plan.
 
-I don't want to get out into the weeds yet on the process that actually works but this is pretty relevant. I had all this setup and running for a few weeks but RingCentral's IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API and it would be reflected in the UI and such but it would never update when you called the system. There was no errors. This could be some random characters in the message it did not like. We struggled with commas for awhile then we swapped to periods to create "breaths" in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation. 
+I don't want to get out into the weeds yet on the process that actually works, but this is pretty relevant. I had all this setup and running for a few weeks but RingCentral's IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API, and it would be reflected in the UI and such, but it would never update when you called the system. There were no errors. This could be some random characters in the message it did not like. We struggled with commas for a while then we swapped to periods to create "breaths" in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation. 
 
 ## Integration hell? New plan? 
 
@@ -31,13 +31,13 @@ Ok so now begins the rabbit hole of dealing with binary WAV files and Azure TTS 
 {{< figure src="/img/Hackathon24/Workflow.png" width=75% layout="responsive" >}}
 
 
-The new goal was to use RingCentral prompt with a crafted wav file and upload it to RingCentral and design some sort of approval process. The wife's company does have a corporate office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
+The new goal was to use RingCentral prompt with a crafted WAV file and upload it to RingCentral and design some sort of approval process. The wife's company does have a corporate Office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
 
-Ok I seem to have a plan. Lets go ahead and work through this. 
+Ok I seem to have a plan. Let's go ahead and work through this. 
 
 ## Phase 1
 
-We began by creating a new N8N workflow with a time based trigger. This only needs kicked off once a day at 2:45 PM EST time. This leads right into a API call to DTN that gets grain data. This data come back as JSON and I will include a snippet of that data. 
+We began by creating a new N8N workflow with a time based trigger. This only needs kicked off once a day at 2:45 PM EST time and leads right into an API call to DTN that gets grain data. Data comes back as JSON and I will include a snippet of that data. 
 
 {{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
 
@@ -643,20 +643,20 @@ We began by creating a new N8N workflow with a time based trigger. This only nee
 {{< /details >}}
 
 
-Data is in a typical structure and we will need to filter the data down to what we need. We do this with a bit of javascript in the next step. 
+Data is in a typical structure, and we will need to filter the data down to what we need. We do this with a bit of JavaScript in the next step. 
 
 
 ## Phase 2
 
 {{< figure src="/img/Hackathon24/Phase2.png" width=65% layout="responsive" >}}
 
-We then go ahead and format the data coming off. This was one fo the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some of the data from the JSON above. It was then able to write this javascript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it. 
+We then go ahead and format the data coming off. This was one of the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some data from the JSON above. It was then able to write this JavaScript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it. 
 
 > "In this n8n workflow, I created a function to dynamically generate SSML (Speech Synthesis Markup Language) for a TTS (Text-to-Speech) system that reports daily commodity prices. The workflow processes data by extracting and formatting relevant information, such as cash prices and futures changes, and composes it into a natural-sounding spoken report. The code includes logic to handle various cases, like specific locations or contract delivery labels, ensuring that the information is accurately conveyed in a user-friendly format. This automation is tailored for an IVR (Interactive Voice Response) system, enabling users to receive up-to-date commodity prices through voice prompts." 
 >
 > – ChatGPT 4.0
 
-{{< details title="Javascript for formatting IVR Prompt for Azure TTS" >}}
+{{< details title="JavaScript for formatting IVR Prompt for Azure TTS" >}}
 ``` javascript
 function getFuturesDirection(futuresChange) {
     const futuresNumber = futuresChange.split("'")[0];
@@ -720,14 +720,14 @@ ssml += `Commodity sales are based off the Redacted Website at Redacted.com
 {{< figure src="/img/Hackathon24/functionATTS.png" width=75% layout="responsive" >}}
 
 
-Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple restAPI post call to https://eastus.tts.speech.microsoft.com/cognitiveservices/v1.
+Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple REST API post call to https://eastus.tts.speech.microsoft.com/cognitiveservices/v1.
 
 {{< collapsible-image 
     title="I have provided a screenshot with headers that I used to get my WAV file. Click arrow to expand." 
     src="/img/Hackathon24/AzureTTS.png" 
     width="75%" 
     layout="responsive" 
-    alt="Azure TTS Screenshot"
+    alt="Azure TTS Screenshot" 
 >}}
 
 While this is all happening we go ahead and work in phase 3 for our approval stages for our message. 
@@ -736,7 +736,7 @@ While this is all happening we go ahead and work in phase 3 for our approval sta
 
 {{< figure src="/img/Hackathon24/Phase3.png" width=75% layout="responsive" >}}
 
-Phase 3 was unique as we decided to add in human intervention at least during this time so we can verify it has the correct information for at least during our proof of concept period. We may move away from the physical approval method at some point and just post the info into the teams space. 
+Phase 3 was unique as we decided to add in human intervention at least during this time, so we can verify it has the correct information for at least during our proof of concept period. We may move away from the physical approval method at some point and just post the info into the teams space. 
 
 This was also new for me as I had never worked with a return webhook or teams card to make it look nice for the end user. 
 
@@ -745,9 +745,9 @@ This was also new for me as I had never worked with a return webhook or teams ca
 >	– ChatGPT 4.0
 
 
-First step in the phase uses some javascript again from ChatGPT. 
+First step in the phase uses some JavaScript again from ChatGPT. 
 
-{{< details title="Javascript for formatting for Teams Approval" >}}
+{{< details title="JavaScript for formatting for Teams Approval" >}}
 ``` javascript
 // Function to get futures direction
 function getFuturesDirection(futuresChange) {
@@ -866,7 +866,7 @@ Once that token comes in we go ahead and strip out the data we don't need and ca
 
 ## Phase 4
 
-It seems like it has taken forever to get here but in this stage we cover uploading the wav data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that officially pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3 and it will play that lovely WAV file for you. 
+It seems like it has taken forever to get here but in this stage we cover uploading the WAV data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that officially pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3, and it will play that lovely WAV file for you. 
 
 {{< figure src="/img/Hackathon24/Phase4.png" width=75% layout="responsive" >}}
 
@@ -948,15 +948,15 @@ It seems like it has taken forever to get here but in this stage we cover upload
 
 ##  All done? Not quite.....
 
-One challenge that neither ChatGPT or I could solve was the WAV file is always named "v1" and if we changed the name with N8N we lost the binary data. The prompt upload would no respect the name field and always named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn't condusive if there was an issue or if they had other prompts they wanted to keep around. 
+One challenge that neither ChatGPT nor I could solve was the WAV file is always named "v1" and if we changed the name with N8N we lost the binary data. The prompt upload would not respect the name field and always named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn't conducive if there was an issue or if they had other prompts they wanted to keep around. 
 
 ## Phase 5 
 
 {{< figure src="/img/Hackathon24/Phase5.png" width=75% layout="responsive" >}}
 
-This was a bit of a challenge due to having to array data and bringing it into flat data so we had to break it down and then do another query to determine what was actually in used. 
+This was a bit of a challenge due to having to array data and bringing it into flat data, so we had to break it down and then do another query to determine what was actually in used. 
 
-The flatten looks similar in both functions
+To flatten looks similar in both functions
 
 ``` javascript
 const ivrMenus = $json.records;
@@ -965,10 +965,10 @@ return ivrMenus.map(menu => {
 });
 ```
 
-Once that data is flat we can then filter and compare data. We apply a simple filter that filters out any TTS prompts so we are left with only audio prompts. This allows us to compare the IVR prompt audio file URIs and determine which ones are no longer used and remove them to keep the environment clean. 
+Once that data is flat we can then filter and compare data. We apply a simple filter that filters out any TTS prompts, so we are left with only audio prompts. This allows us to compare the IVR prompt audio file URIs and determine which ones are no longer used and remove them to keep the environment clean. 
 
 
 ## Synopsis
-This was a great project even if there were times I thought it was taking years off my life but with the help of ChatGPT as almost dare I say a colleague helping step through, talk, and learn. I learned about JWT's, formatting data, Javascript, and troubleshooting API challenges with limited support. 
+This was a great project even if there were times I thought it was taking years off my life but with the help of ChatGPT as almost dare I say a colleague helping step through, talk, and learn. I learned about JWT's, formatting data, JavaScript, and troubleshooting API challenges with limited support. 
 
 Check them out here https://n8n.io/
