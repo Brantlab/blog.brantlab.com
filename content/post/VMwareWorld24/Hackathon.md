@@ -1,11 +1,12 @@
 ---
 title: "VMware Explore Hackathon 24 - Automating a phone IVR Message"
 author: "Justin Brant"
-# cover: "/img/cover.jpg"
-tags: ["VMUG", "Automation"]
+cover: "/img/Hackathon24/Workflow.png"
+tags: ["Automation", N8N, ChatGPT]
 date: 2024-08-26
 draft: false
 ---
+
 
 ## What is the goal?
 
@@ -13,23 +14,24 @@ This year for the hackathon at VMware Explore I was unsure I would be able to at
 
 ## Whats the problem?
 
-My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office and they will have wood paneling, They had a phone system but was limited to each facility and was not interc-connected between sites. Not related but made this request possible is we migrated them off old copper and onto a VOIP solution through ringcentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially its their version of the stock market. This was a very manual process. 
+My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office and they will have wood paneling, They had a phone system but was limited to each facility and was not interc-connected between sites. Not related but made this request possible is we migrated them off old copper and onto a VOIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially its their version of the stock market. This was a very manual process. 
 
 ## How do we solve this? 
 
-On their website for the company they pay for a service called DTN that allows us API calls to grab that grain data and show it on their website. Excellent. This helps us by giving us our first step and didn't hard stop this idea. My idea was to grab data, format it, and upload it to ringcentrals IVR text to speech API for IVR Prompts. We have the plan. 
+On their website for the company they pay for a service called DTN that allows us API calls to grab that grain data and show it on their website. Excellent. This helps us by giving us our first step and didn't hard stop this idea. My idea was to grab data, format it, and upload it to RingCentrals IVR text to speech API for IVR Prompts. We have the plan. 
 
 ## Lets discuss the issue with said plan.
 
-I don't want to get out into the weeds yet on the process that actually works but this is pretty relevent. I had all this setup and running for a few weeks but ringcentral's IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API and it would be reflected in the UI and such but it would never update when you called the system. There was no errors. This could be some random charcters in the message it did not like. We sturggled with commas for awhile then we swapped to periods to create "breaths" in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation. 
+I don't want to get out into the weeds yet on the process that actually works but this is pretty relevent. I had all this setup and running for a few weeks but RingCentral's IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API and it would be reflected in the UI and such but it would never update when you called the system. There was no errors. This could be some random charcters in the message it did not like. We sturggled with commas for awhile then we swapped to periods to create "breaths" in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation. 
 
 ## Integration hell? New plan? 
 
 Ok so now begins the rabbit hole of dealing with binary WAV files and Azure TTS services and learning all the things. 
 
-# insert picture of workflow
+{{< figure src="/img/Hackathon24/Workflow.png" width=75% layout="responsive" >}}
 
-The new goal was to use ringcentral prompt with a crafted wav file and upload it to ringcentral and design some sort of approval process. The wife's company does have a coporate office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
+
+The new goal was to use RingCentral prompt with a crafted wav file and upload it to RingCentral and design some sort of approval process. The wife's company does have a coporate office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
 
 Ok I seem to have a plan. Lets go ahead and work through this. 
 
@@ -873,7 +875,7 @@ It seems like it has taken forever to get here but in this stage we cover upload
     {
       "parameters": {
         "method": "POST",
-        "url": "https://platform.ringcentral.com/restapi/v1.0/account/~/ivr-prompts",
+        "url": "https://platform.RingCentral.com/restapi/v1.0/account/~/ivr-prompts",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -922,7 +924,7 @@ It seems like it has taken forever to get here but in this stage we cover upload
     {
       "parameters": {
         "method": "PUT",
-        "url": "https://platform.ringcentral.com/restapi/v1.0/account/~/ivr-menus/<ID>",
+        "url": "https://platform.RingCentral.com/restapi/v1.0/account/~/ivr-menus/<ID>",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
