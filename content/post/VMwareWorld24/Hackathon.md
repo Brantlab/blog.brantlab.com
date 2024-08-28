@@ -10,11 +10,11 @@ draft: false
 
 ## What is the goal?
 
-This year for the hackathon at VMware Explore I was unsure I would be able to attend so I ended up being a walk in and sometimes those are the best projects and networking oppurtunites. My team originally was just talking about life with everything from Firefighting to the spiders in austrailia. PowerCLI man came over and was like hey why don't you guys do something with ChatGPT. We decided to use a project I had actually worked on prior to arriving at the hackathon. 
+This year for the hackathon at VMware Explore I was unsure I would be able to attend so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don't you guys do something with ChatGPT. We decided to use a project I had actually worked on prior to arriving at the hackathon. 
 
 ## Whats the problem?
 
-My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office and they will have wood paneling, They had a phone system but was limited to each facility and was not interc-connected between sites. Not related but made this request possible is we migrated them off old copper and onto a VOIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially its their version of the stock market. This was a very manual process. 
+My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office and they will have wood paneling, They had a phone system but was limited to each facility and was not inter-connected between sites. Not related but made this request possible is we migrated them off old copper and onto a VOIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially its their version of the stock market. This was a very manual process. 
 
 ## How do we solve this? 
 
@@ -22,7 +22,7 @@ On their website for the company they pay for a service called DTN that allows u
 
 ## Lets discuss the issue with said plan.
 
-I don't want to get out into the weeds yet on the process that actually works but this is pretty relevent. I had all this setup and running for a few weeks but RingCentral's IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API and it would be reflected in the UI and such but it would never update when you called the system. There was no errors. This could be some random charcters in the message it did not like. We sturggled with commas for awhile then we swapped to periods to create "breaths" in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation. 
+I don't want to get out into the weeds yet on the process that actually works but this is pretty relevant. I had all this setup and running for a few weeks but RingCentral's IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API and it would be reflected in the UI and such but it would never update when you called the system. There was no errors. This could be some random characters in the message it did not like. We struggled with commas for awhile then we swapped to periods to create "breaths" in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation. 
 
 ## Integration hell? New plan? 
 
@@ -31,13 +31,13 @@ Ok so now begins the rabbit hole of dealing with binary WAV files and Azure TTS 
 {{< figure src="/img/Hackathon24/Workflow.png" width=75% layout="responsive" >}}
 
 
-The new goal was to use RingCentral prompt with a crafted wav file and upload it to RingCentral and design some sort of approval process. The wife's company does have a coporate office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
+The new goal was to use RingCentral prompt with a crafted wav file and upload it to RingCentral and design some sort of approval process. The wife's company does have a corporate office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
 
 Ok I seem to have a plan. Lets go ahead and work through this. 
 
 ## Phase 1
 
-We began by creating a new N8N workflow with a time based tirgger. This only needs kicked off once a day at 2:45 PM EST time. This leads right into a API call to DTN that gets grain data. This data come back as JSON and I will include a snippet of that data. 
+We began by creating a new N8N workflow with a time based trigger. This only needs kicked off once a day at 2:45 PM EST time. This leads right into a API call to DTN that gets grain data. This data come back as JSON and I will include a snippet of that data. 
 
 {{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
 
@@ -852,7 +852,7 @@ return [{ json: teamsMessage }];
 
 Once this format is complete it posts that into the chat system. 
 
-## insert image from my lovely wife once she sends it to me. 
+{{< figure src="/img/Hackathon24/bot.png" width=65% layout="responsive" >}}
 
 The N8N workflow then waits for a webhook back. That will come back with a JSON reply with either approve and deny message. We then go ahead and hit that switch and determines which way we are going to go depending on the selection. 
 
@@ -862,11 +862,11 @@ Once that has been determined we send a message back to teams verifying that it 
 >
 >	– ChatGPT 4.0
 
-Once that token comes in we go ahead and stirp out the data we don't need and carry that onto where we merge all of our data together to simplify the request we are going to craft to send off to RingCentral. 
+Once that token comes in we go ahead and strip out the data we don't need and carry that onto where we merge all of our data together to simplify the request we are going to craft to send off to RingCentral. 
 
 ## Phase 4
 
-It seems like it has taken forever to get here but in this stage we cover uploading the wav data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that offically pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3 and it will play that lovely WAV file for you. 
+It seems like it has taken forever to get here but in this stage we cover uploading the wav data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that officially pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3 and it will play that lovely WAV file for you. 
 
 {{< figure src="/img/Hackathon24/Phase4.png" width=75% layout="responsive" >}}
 
@@ -948,7 +948,7 @@ It seems like it has taken forever to get here but in this stage we cover upload
 
 ##  All done? Not quite.....
 
-One challenge that neither ChatGPT or I could solve was the WAV file is always named "v1" and if we changed the name with N8N we lost the binary data. The prompt upload would no respect the name field and alwaus named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn't condusive if there was an issue or if they had other prompts they wanted to keep around. 
+One challenge that neither ChatGPT or I could solve was the WAV file is always named "v1" and if we changed the name with N8N we lost the binary data. The prompt upload would no respect the name field and always named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn't condusive if there was an issue or if they had other prompts they wanted to keep around. 
 
 ## Phase 5 
 
