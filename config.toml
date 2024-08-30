@@ -38,11 +38,11 @@ paginate = 5
   weight = 2
   identifier = "HomeLab"
   url = "/tags/HomeLab/"
-[[menu.main]]
-  name = "Power_Something"
-  weight = 3
-  identifier = "Power_Something"
-  url = "/tags/Power_Something/"
+#[[menu.main]]
+#  name = "Power_Something"
+#  weight = 3
+#  identifier = "Power_Something"
+#  url = "/tags/Power_Something/"
 [[menu.main]]
   name = "VMUG"
   weight = 3
