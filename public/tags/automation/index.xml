@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Justin Brant</title>
+    <link>http://localhost:1313/tags/automation/</link>
+    <description>Recent content in Automation on Justin Brant</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 26 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VMware Explore Hackathon 24 - Automating a phone IVR Message</title>
+      <link>http://localhost:1313/post/vmwareworld24/hackathon/</link>
+      <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/vmwareworld24/hackathon/</guid>
+      <description>What is the goal? This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don&amp;rsquo;t you guys do something with ChatGPT.</description>
+    </item>
+    <item>
+      <title>Intro to N8N</title>
+      <link>http://localhost:1313/post/vmug/n8npreso/</link>
+      <pubDate>Tue, 25 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/vmug/n8npreso/</guid>
+      <description>Back in the saddle On April 19th I gave a presentation to Fort Wayne VMUG around N8N and my current escapades down that rabbit hole of an automation framework. I have a DevOps mindset but wasn&amp;rsquo;t sure where I was going with this application other than some specific use cases which I will discuss later in this article. Let&amp;rsquo;s jump into the &amp;ldquo;What is it?&amp;rdquo;.&#xA;What is it? n8n is an open-source workflow automation tool that allows users to connect different apps and services together to automate tasks and processes without any coding.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1240 @@
+<!doctype html>
+<html ⚡ lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PW5S5VF7TL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PW5S5VF7TL');
+</script>
+    
+    <meta charset="utf-8" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+
+    
+    
+  
+
+    
+    <title>VMware Explore Hackathon 24 - Automating a phone IVR Message</title>
+
+    
+    
+
+
+
+  
+  
+  <meta name="author" content="Justin Brant" />
+  <meta name="description" content="What is the goal? This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don&rsquo;t you guys do something with ChatGPT.">
+
+
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@JustinBrant93" />
+    <meta name="twitter:title" content="VMware Explore Hackathon 24 - Automating a phone IVR Message" />
+    <meta name="twitter:description" content="What is the goal? This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don&rsquo;t you guys do something with ChatGPT." />
+    <meta name="twitter:image" content="http://localhost:1313/img/Hackathon24/Workflow.png" />
+  
+
+
+
+
+<meta name="generator" content="Hugo 0.133.1">
+
+
+<link rel="canonical" href="http://localhost:1313/post/vmwareworld24/hackathon/">
+<link rel="alternative" href="/index.xml" title="Justin Brant" type="application/atom+xml">
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/img/favicon.ico" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/avatar.jpg">
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<style amp-custom>/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}code,kbd,samp{font-family:monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}[hidden],template{display:none}body{font-size:18px;font-weight:300;line-height:1.618;font-family:Roboto,sans-serif;color:#777;background:#fff;text-rendering:optimizeLegibility;-webkit-overflow-scrolling:touch}a{color:#3f9adc;text-decoration:none;font-weight:600}a:focus,a:hover{opacity:.7;outline:none}amp-img{margin:0 auto;box-shadow:2px 20px 40px 10px rgba(0,0,0,.15)}button:hover{cursor:pointer}.main{margin-left:20rem;padding:1rem 2rem;max-width:100%;min-height:100vh;box-sizing:border-box}@media screen and (max-width:1440px){.main{width:calc(100% - 20rem)}}@media (min-width:800px) and (max-width:960px){.main{margin-left:15rem;width:calc(100% - 15rem)}}@media screen and (max-width:800px){.main{margin-left:0;padding:0 1rem 1rem;width:100%;min-height:0;border-left:none;border-right:none;border-top:1px solid #ddd;border-bottom:1px solid #ddd}}.footer{display:none}@media screen and (max-width:800px){.footer{display:block;padding:1rem;font-size:.8rem;text-align:center;font-family:Roboto Mono,Menlo,Monaco,Consolas,Courier New,monospace}}.icon{font-style:normal;text-decoration:inherit;width:1em;height:1em;font-variant:normal;text-transform:none;line-height:1em}.icon,.share{display:inline-block;text-align:center}.share{font-weight:400;margin-left:.2rem;border:none;outline:none;color:#fff;width:30px;height:30px;border-radius:50%}.share-twitter{background-color:#55acee}.share-twitter-icon{margin:5px 0 0 1px}.share-facebook{background-color:#3b5998}.header{position:fixed;left:0;top:0;bottom:0;width:20rem;padding:1rem;box-sizing:border-box;text-align:center;background-color:rgba(106,172,14,.9)}@media screen and (max-width:800px){.header{width:100%;position:relative}}@media (min-width:800px) and (max-width:960px){.header{width:15rem}}.logo{margin-top:3rem;border-radius:20%;border:4px solid #fff;transition:all .5s ease-out}.logo:hover{border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.3)}@media screen and (max-width:800px){.logo{position:absolute;top:1rem;left:1rem;width:2rem;height:2rem;margin-top:0;border:2px solid #fff}}.title{font-size:1.5rem;font-family:Roboto,sans-serif;font-weight:600;margin:1rem auto}@media screen and (max-width:800px){.title{margin:0 auto}}.subtitle,.title a{color:#fff}.subtitle{margin-bottom:1rem;opacity:.8}.menu{display:none}@media screen and (min-width:800px){.menu{display:block}}.menu-list{list-style:none;padding:0}.menu-item{padding:1rem 0}.menu-item a{font-weight:100;opacity:.8;color:#fff}.menu-item a:focus,.menu-item a:hover{opacity:1}.menu-item.is-active a{color:#444;opacity:1;font-weight:700}.menu-toggle{border:none;outline:none;font-size:2rem;background-color:transparent;color:#fff;position:absolute;top:1rem;right:1rem}@media screen and (min-width:800px){.menu-toggle{display:none}}.sidebar{background-color:#fff;width:100vw}@media screen and (min-width:640px){.sidebar{width:50vw}}.sidebar-list{list-style:none;padding:0;margin:0}.sidebar-menu{text-align:right;padding:16px}.sidebar-item{font-size:2rem;padding:30px 35px 30px 25px;border-top:1px solid #ddd}.sidebar-item:hover{background-color:#f2f2f2}.sidebar-icon{border:none;outline:none;background-color:transparent;font-family:Roboto,sans-serif;font-weight:100;font-size:2rem}.sidebar-link{color:#000;font-weight:100}.social-list{margin:0;padding:0;list-style:none}@media screen and (min-width:800px){.social-list{position:absolute;bottom:10px;left:0;right:0}}.social-item{display:inline-block;margin:0 .2rem}.social-item a{color:#fff;font-weight:400}.entry-list{background-color:#f2f2f2}@media screen and (max-width:800px){.entry-list{padding-top:30px}}.entry-single{line-height:1.8;margin-bottom:22px;background-color:#fff;box-shadow:0 0 2px 0 rgba(137,146,177,.15),0 3px 10px 0 rgba(137,146,177,.1);border-radius:5px}.entry-single:hover{box-shadow:0 1px 15px 0 rgba(137,146,177,.15),0 10px 20px 0 rgba(137,146,177,.15)}.entry-cover{max-width:100%;border-radius:5px 5px 0 0;-o-object-fit:cover;object-fit:cover;box-shadow:none}.entry-title{margin:0;padding:20px 30px 0}.entry-link{font-size:1.5rem;font-weight:600;color:#262626}.entry-summary{padding:0 30px;text-align:justify;max-height:4rem;overflow:hidden}.entry-footer{margin:0 30px;padding:10px 0;border-top:1px solid #ddd;display:flex;justify-content:space-between}.entry-meta{margin:0;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}.entry-time{color:#444}.entry-time:after{content:"";border-right:1px solid #ddd;margin:0 8px 0 10px}.pagination{display:flex;justify-content:flex-start}.pagination-btn{color:#777;padding:.8rem;background-color:#fff;border:1px solid #ddd;font-size:.8rem;text-transform:uppercase;border-radius:5px}.pagination-btn:focus,.pagination-btn:hover{color:#fff;background-color:#6aac0e;border-color:#6aac0e}.pagination-next{margin-left:auto}.post-header:after{display:block;content:"";border-bottom-width:3px;border-bottom-style:solid;width:60px;padding-top:10px;border-bottom-color:#6aac0e}.post-title{font-size:2rem;color:#262626;line-height:1.5;margin-top:1.5rem;margin-bottom:.5rem}.post-footer{margin:1rem 0;line-height:1.8}.post-tags{margin-top:0;margin-bottom:1rem;padding-left:0}.post-tag{display:inline-block;margin:0 .5rem 0 0;border-radius:3px;padding:5px 10px;background:#f2f2f2;font-size:.8rem}.post-tag:hover{background:#ddd;box-shadow:0 1px 15px 0 rgba(137,146,177,.15),0 10px 20px 0 rgba(137,146,177,.15)}.post-content{line-height:1.8}.post-content h1,.post-content h2,.post-content h3,.post-content h4,.post-content h5,.post-content h6{color:#6cb505;font-weight:700;line-height:1.125}.post-content h1{margin-top:2rem;margin-bottom:1rem;font-size:2rem}.post-content h2{margin-top:1.75rem;margin-bottom:.75rem;font-size:1.5rem}.post-content h3{margin-top:1.5rem;margin-bottom:.5rem;font-size:1.25rem}.post-content h4{margin-top:1.25rem;margin-bottom:.25rem;font-size:1rem}.post-content h5,.post-content h6{margin-top:1rem;margin-bottom:0;font-size:.8rem}.post-content li+li{margin-top:.5rem}.post-content em{color:#777;font-style:italic}.post-content strong{color:#444}.post-content del{color:#777;text-decoration:line-through}.post-content ins{color:#444;text-decoration:underline}.post-content hr{position:relative;margin:2rem auto;border-top:1px dashed #ddd;border-bottom:none}.post-content hr:before{content:"sep line";position:absolute;top:-12px;left:calc(50% - 40px);padding:0 .5rem;background-color:#fff;color:#ddd;font-size:.8rem;font-family:Roboto Mono,Menlo,Monaco,Consolas,Courier New,monospace}.post-content p{margin-top:1.5rem;margin-bottom:1.5rem;text-align:justify}.post-content blockquote{background-color:#f2f2f2;border-left:5px solid #ddd;padding:.5rem 1rem;margin:2rem 0}.post-content blockquote p{margin-top:.5rem;margin-bottom:.5rem}.post-content blockquote cite{margin-top:1.5rem;color:#777;font-size:.9rem}.post-content code,.post-content tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:.9em;background-color:#ddd;font-family:Roboto Mono,Menlo,Monaco,Consolas,Courier New,monospace}.post-content code:after,.post-content code:before,.post-content tt:after,.post-content tt:before{letter-spacing:-.2em;content:"\00a0"}.post-content kbd{display:inline-block;padding:.25em;background-color:#f2f2f2;border:1px solid #ddd;border-bottom-color:#ddd;border-radius:3px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.05);font-size:.8em;line-height:1.25;font-family:Roboto Mono,Menlo,Monaco,Consolas,Courier New,monospace;color:#777}.post-content pre{margin:2rem auto;padding:1rem;overflow-x:auto;border-radius:3px;font-size:.9rem;line-height:1.618;white-space:pre;word-wrap:normal;word-break:normal;background:#ddd;color:#777}.post-content pre code{font-size:.9rem;background-color:transparent}.post-content pre code:after,.post-content pre code:before{content:none}.post-content sub,.post-content sup{font-size:.8rem}.post-content sub a,.post-content sub a:focus,.post-content sub a:hover,.post-content sup a,.post-content sup a:focus,.post-content sup a:hover{border-bottom:none}.post-content ol{margin-left:0;margin-top:2rem;margin-bottom:2rem;padding-left:1.5rem;list-style:decimal outside}.post-content ol ol{margin-top:.5rem;margin-bottom:.5rem;list-style:lower-roman outside}.post-content ol ul{margin-top:.5rem;margin-bottom:.5rem;list-style:disc outside}.post-content ul{margin-left:0;margin-top:2rem;margin-bottom:2rem;padding-left:1.5rem;list-style:disc outside}.post-content ul ul{margin-top:.5rem;margin-bottom:.5rem;list-style:circle outside}.post-content ul ol{margin-top:.5rem;margin-bottom:.5rem;list-style:decimal outside}.post-content dl{margin-top:2rem;margin-bottom:2rem}.post-content dl dt{color:#6aac0e;margin-top:1rem}.post-content dl dt:after{content:":"}.post-content dl dd{text-indent:2rem;margin-left:0;margin-top:.25rem}.post-content figure{display:block;margin:2rem auto}.post-content figure img{max-width:100%;box-shadow:2px 20px 40px 10px rgba(0,0,0,.15)}@media screen and (max-width:800px){.post-content figure img{box-shadow:none}}.post-content figure figcaption h4{color:#ddd;font-size:.9rem;text-align:center}table{background-color:#f2f2f2;color:#444;margin:2rem auto;width:100%;border-collapse:collapse;border-radius:5px}table td,table th{border:1px solid #ddd;border-width:0 0 1px;padding:.5em .75em;vertical-align:center}table th{color:#444}table tr:hover{background-color:#ddd}table thead td,table thead th{border-width:0 0 2px;color:#777}table tfoot td,table tfoot th{border-width:2px 0 0;color:#777}table tbody tr:last-child td,table tbody tr:last-child th{border-bottom-width:0}table tr:first-child th:first-child{border-top-left-radius:5px}table tr:first-child th:last-child{border-top-right-radius:5px}table tr:last-child td:first-child{border-bottom-left-radius:5px}table tr:last-child td:last-child{border-bottom-right-radius:5px}.not-found{margin:5rem auto 0;font-family:Roboto Mono,Menlo,Monaco,Consolas,Courier New,monospace;text-align:center}.error-emoji{color:#444;font-size:3rem}.error-text{font-size:1.25rem}.error-link{margin-top:2rem;font-size:1rem;color:#6aac0e}</style>
+
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-rss" viewBox="0 0 24 24">
+    <title>RSS</title>
+    <path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-email" viewBox="0 0 24 24">
+    <title>Email</title>
+    <path d="M24 4.5v15c0 .85-.65 1.5-1.5 1.5H21V7.387l-9 6.463-9-6.463V21H1.5C.649 21 0 20.35 0 19.5v-15c0-.425.162-.8.431-1.068C.7 3.16 1.076 3 1.5 3H2l10 7.25L22 3h.5c.425 0 .8.162 1.069.432.27.268.431.643.431 1.068z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-twitter" viewBox="0 0 24 24">
+    <title>Twitter</title>
+    <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-github" viewBox="0 0 24 24">
+    <title>GitHub</title>
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-dribbble" viewBox="0 0 24 24">
+    <title>Dribbble</title>
+    <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.814zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.285zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-linkedin" viewBox="0 0 24 24">
+    <title>LinkedIn</title>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-facebook" viewBox="0 0 60 60">
+    <title>Facebook</title>
+    <path d="M42.8,23.8h-7.4v-4.8c0-1.8,1.2-2.2,2.1-2.2c0.8,0,5.2,0,5.2, 0v-8l-7.2,0c-8,0-9.8,6-9.8,9.8v5.3 h-4.6V32h4.6c0,10.6,0,23.3,0,23.3h9.7c0,0,0-12.9,0-23.3H42L42.8,23.8z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-instagram" viewBox="0 0 24 24">
+    <title>Instagram</title>
+    <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-youtube" viewBox="0 0 24 24">
+    <title>YouTube</title>
+    <path class="a" d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-pinterest" viewBox="0 0 24 24">
+    <title>Pinterest</title>
+    <path d="M8.134 18.748c0-1.6.2-3 .8-4.4.5-1.4 1.2-2.6 2.2-3.6.9-1 2-1.9 3.2-2.6 1.2-.8 2.5-1.3 3.9-1.7 1.5-.4 2.9-.5 4.4-.5 2.2 0 4.3.4 6.2 1.4 1.9.9 3.5 2.3 4.7 4.1 1.2 1.9 1.8 3.9 1.8 6.2 0 1.4-.1 2.7-.4 4-.2 1.3-.7 2.6-1.2 3.8-.6 1.2-1.3 2.3-2.2 3.2-.8.9-1.8 1.7-3.1 2.2-1.2.6-2.5.9-4 .9-1 0-1.9-.3-2.9-.7-.9-.5-1.6-1.1-2-1.9-.1.5-.3 1.4-.6 2.4-.3 1.1-.4 1.7-.5 2-.1.3-.2.9-.4 1.6-.3.7-.4 1.2-.6 1.5-.1.3-.4.7-.7 1.3-.3.6-.6 1.2-1 1.7-.3.5-.7 1.1-1.3 1.8l-.3.1-.2-.2c-.2-2.2-.3-3.6-.3-4 0-1.3.2-2.8.5-4.4.3-1.7.8-3.7 1.4-6.2.6-2.5 1-3.9 1.1-4.4-.5-.9-.7-2.1-.7-3.6 0-1.2.4-2.3 1.1-3.3.8-1.1 1.7-1.6 2.8-1.6.9 0 1.6.3 2.1.9.4.6.7 1.3.7 2.2 0 .9-.3 2.3-1 4.1-.6 1.8-.9 3.1-.9 4 0 .9.3 1.6 1 2.2.6.6 1.4.9 2.3.9.8 0 1.5-.2 2.2-.5.6-.4 1.2-.9 1.6-1.5.5-.6.9-1.3 1.2-2 .4-.8.6-1.5.8-2.4.2-.8.4-1.6.5-2.4.1-.7.1-1.4.1-2.1 0-2.5-.8-4.4-2.3-5.8-1.6-1.4-3.6-2.1-6.1-2.1-2.8 0-5.2 1-7.1 2.8-1.9 1.9-2.9 4.2-2.9 7.1 0 .6.1 1.2.3 1.8.2.6.4 1.1.6 1.4.2.3.4.7.5 1 .2.3.3.5.3.6 0 .4-.1.9-.3 1.6-.2.6-.5 1-.8 1 0 0-.1-.1-.4-.1-.7-.2-1.3-.6-1.9-1.2-.5-.6-1-1.3-1.3-2-.3-.8-.5-1.6-.7-2.4-.2-.7-.2-1.5-.2-2.2z" />
+  </symbol>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-reddit" viewBox="0 0 24 24">
+    <title>Reddit icon</title>
+    <path d="M2.204 14.049c-.06.276-.091.56-.091.847 0 3.443 4.402 6.249 9.814 6.249 5.41 0 9.812-2.804 9.812-6.249 0-.274-.029-.546-.082-.809l-.015-.032c-.021-.055-.029-.11-.029-.165-.302-1.175-1.117-2.241-2.296-3.103-.045-.016-.088-.039-.126-.07-.026-.02-.045-.042-.067-.064-1.792-1.234-4.356-2.008-7.196-2.008-2.815 0-5.354.759-7.146 1.971-.014.018-.029.033-.049.049-.039.033-.084.06-.13.075-1.206.862-2.042 1.937-2.354 3.123 0 .058-.014.114-.037.171l-.008.015zm9.773 5.441c-1.794 0-3.057-.389-3.863-1.197-.173-.174-.173-.457 0-.632.176-.165.46-.165.635 0 .63.629 1.685.943 3.228.943 1.542 0 2.591-.3 3.219-.929.165-.164.45-.164.629 0 .165.18.165.465 0 .645-.809.808-2.065 1.198-3.862 1.198l.014-.028zm-3.606-7.573c-.914 0-1.677.765-1.677 1.677 0 .91.763 1.65 1.677 1.65s1.651-.74 1.651-1.65c0-.912-.739-1.677-1.651-1.677zm7.233 0c-.914 0-1.678.765-1.678 1.677 0 .91.764 1.65 1.678 1.65s1.651-.74 1.651-1.65c0-.912-.739-1.677-1.651-1.677zm4.548-1.595c1.037.833 1.8 1.821 2.189 2.904.45-.336.719-.864.719-1.449 0-1.002-.815-1.816-1.818-1.816-.399 0-.778.129-1.09.363v-.002zM2.711 9.963c-1.003 0-1.817.816-1.817 1.818 0 .543.239 1.048.644 1.389.401-1.079 1.172-2.053 2.213-2.876-.302-.21-.663-.329-1.039-.329v-.002zm9.217 12.079c-5.906 0-10.709-3.205-10.709-7.142 0-.275.023-.544.068-.809C.494 13.598 0 12.729 0 11.777c0-1.496 1.227-2.713 2.725-2.713.674 0 1.303.246 1.797.682 1.856-1.191 4.357-1.941 7.112-1.992l1.812-5.524.404.095s.016 0 .016.002l4.223.993c.344-.798 1.138-1.36 2.065-1.36 1.229 0 2.231 1.004 2.231 2.234 0 1.232-1.003 2.234-2.231 2.234s-2.23-1.004-2.23-2.23l-3.851-.912-1.467 4.477c2.65.105 5.047.854 6.844 2.021.494-.464 1.144-.719 1.833-.719 1.498 0 2.718 1.213 2.718 2.711 0 .987-.54 1.886-1.378 2.365.029.255.059.494.059.749-.015 3.938-4.806 7.143-10.72 7.143l-.034.009zm8.179-19.187c-.74 0-1.34.599-1.34 1.338 0 .738.6 1.34 1.34 1.34.732 0 1.33-.6 1.33-1.334 0-.733-.598-1.332-1.347-1.332l.017-.012z"/>
+  </symbol>
+</svg>
+
+    <header class="header">
+  <amp-img alt="Justin Brant"
+    width="128px"
+    height="128px"
+    class="logo"
+    src="/img/avatar.jpg"
+    sizes="(max-width: 800px) 36px, 128px">
+  </amp-img>
+  
+    <h2 class="title"><a href="http://localhost:1313/" title="Justin Brant">Justin Brant</a></h2>
+  
+  <p class="subtitle">Husband, Father, Typical Geek, Virtualization Enthusiast, Fort Wayne VMUG Leader, #vExpert, Radio Connoisseur, EMT, and CERT Support. Sorry for my rambles in advance!</p>
+  <button class="menu-toggle" type="button" on="tap:sidebar.open">
+    <span class="icon icon-menu"></span>
+  </button>
+
+  
+  <nav class="menu">
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item "><a href="/tags/about-me/">About Me</a></li>
+      
+        <li class="menu-item "><a href="/tags/automation/">Automation</a></li>
+      
+        <li class="menu-item "><a href="/tags/conferences/">Conferences</a></li>
+      
+        <li class="menu-item "><a href="/tags/homelab/">HomeLab</a></li>
+      
+        <li class="menu-item "><a href="/tags/power_something/">Power_Something</a></li>
+      
+        <li class="menu-item "><a href="/tags/vmug/">VMUG</a></li>
+      
+    </ul>
+  </nav>
+
+  <ul class="social-list">
+  
+  <li class="social-item">
+    <a href="mailto:Justin@brantlab.com" title="Email">
+      <svg class="icon" fill="currentColor"><use xlink:href="#icon-email" /></svg>
+    </a>
+  </li>
+  
+
+  
+  <li class="social-item">
+    <a href="//github.com/Brantlab" title="GitHub">
+      <svg class="icon" fill="currentColor"><use xlink:href="#icon-github" /></svg>
+    </a>
+  </li>
+  
+
+  
+  <li class="social-item">
+    <a href="//twitter.com/JustinBrant93" title="Twitter">
+      <svg class="icon" fill="currentColor"><use xlink:href="#icon-twitter" /></svg>
+    </a>
+  </li>
+  
+
+  
+  <li class="social-item">
+    <a href="//www.linkedin.com/in/justinbrant" title="Linkedin">
+      <svg class="icon" fill="currentColor"><use xlink:href="#icon-linkedin" /></svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <li class="social-item">
+    <a href="/index.xml" title="RSS">
+      <svg class="icon" fill="currentColor"><use xlink:href="#icon-rss" /></svg>
+    </a>
+  </li>
+</ul>
+
+</header>
+
+    <amp-sidebar id="sidebar" class="sidebar" layout="nodisplay" side="right">
+  <ul class="sidebar-list">
+    <li class="sidebar-menu"><button class="sidebar-icon" on="tap:sidebar.close">X</button></li>
+    
+    
+    
+    
+      <li class="sidebar-item "><a class="sidebar-link" href="/tags/about-me/">About Me</a></li>
+    
+      <li class="sidebar-item "><a class="sidebar-link" href="/tags/automation/">Automation</a></li>
+    
+      <li class="sidebar-item "><a class="sidebar-link" href="/tags/conferences/">Conferences</a></li>
+    
+      <li class="sidebar-item "><a class="sidebar-link" href="/tags/homelab/">HomeLab</a></li>
+    
+      <li class="sidebar-item "><a class="sidebar-link" href="/tags/power_something/">Power_Something</a></li>
+    
+      <li class="sidebar-item "><a class="sidebar-link" href="/tags/vmug/">VMUG</a></li>
+    
+  </ul>
+</amp-sidebar>
+
+    
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">VMware Explore Hackathon 24 - Automating a phone IVR Message</h1>
+      <p class="entry-meta"><span class="entry-time">Aug 26, 2024</span> 17 min read</p>
+    </header>
+    
+
+    <article class="post-content"><h2 id="what-is-the-goal">What is the goal?</h2>
+<p>This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don&rsquo;t you guys do something with ChatGPT. We decided to use a project I had actually worked on prior to arriving at the hackathon.</p>
+<h2 id="whats-the-problem">What&rsquo;s the problem?</h2>
+<p>My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office, and they will have wood paneling, They had a phone system but was limited to each facility and was not interconnected between sites. Not related but made this request possible is we migrated them off old copper and onto a VoIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially it&rsquo;s their version of the stock market. This was a very manual process.</p>
+<h2 id="how-do-we-solve-this">How do we solve this?</h2>
+<p>On their website for the company they pay for a service called DTN that allows us API calls to grab that grain data and show it on their website. Excellent. This helps us by giving us our first step and didn&rsquo;t hard stop this idea. My idea was to grab data, format it, and upload it to RingCentrals IVR text to speech API for IVR Prompts. We have the plan.</p>
+<h2 id="lets-discuss-the-issue-with-said-plan">Let&rsquo;s discuss the issue with said plan.</h2>
+<p>I don&rsquo;t want to get out into the weeds yet on the process that actually works, but this is pretty relevant. I had all this setup and running for a few weeks but RingCentral&rsquo;s IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API, and it would be reflected in the UI and such, but it would never update when you called the system. There were no errors. This could be some random characters in the message it did not like. We struggled with commas for a while then we swapped to periods to create &ldquo;breaths&rdquo; in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation.</p>
+<h2 id="integration-hell-new-plan">Integration hell? New plan?</h2>
+<p>Ok so now begins the rabbit hole of dealing with binary WAV files and Azure TTS services and learning all the things.</p>
+<figure><img src="/img/Hackathon24/Workflow.png" width="75%">
+</figure>
+
+<p>The new goal was to use RingCentral prompt with a crafted WAV file and upload it to RingCentral and design some sort of approval process. The wife&rsquo;s company does have a corporate Office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc.</p>
+<p>Ok I seem to have a plan. Let&rsquo;s go ahead and work through this.</p>
+<h2 id="phase-1">Phase 1</h2>
+<p>We began by creating a new N8N workflow with a time based trigger. This only needs kicked off once a day at 2:45 PM EST time and leads right into an API call to DTN that gets grain data. Data comes back as JSON and I will include a snippet of that data.</p>
+<figure><img src="/img/Hackathon24/Phase1.png" width="35%">
+</figure>
+
+<details>
+    <summary>JSON of Data example</summary>
+    <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.4</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">3.22</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Corn&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Cash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240831&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-08-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-08-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;0&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;362&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4101519</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.4</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">3.22</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;362&#39;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@C4U&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.45</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">3.42</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Corn&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;New 24&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20241031&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-10-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-10-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;386&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4128397</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.45</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">3.42</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;386&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@C4Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.4</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">3.66</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Corn&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Jan &#39;25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20250131&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2025-01-31T06:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2025-01-01T06:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;0&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;405&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4166157</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.4</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">3.66</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;405&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@C5H&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.8</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Cash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240831&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-08-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-08-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4332967</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.8</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.7</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;FH Sept&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240930&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-09-30T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-09-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4332957</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.7</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.6</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;New 24&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20241130&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-11-30T06:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-11-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4332952</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.6</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.2</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.45</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.53</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Jan &#39;25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20250131&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2025-01-31T06:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2025-01-01T06:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;997&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4166162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.45</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.53</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;998&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S5F&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.5</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">4.46</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Wheat&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">40</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Cash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240831&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-08-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-08-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-1&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;496&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4101522</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.5</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">4.46</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;498&#39;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@W4U&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.5</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">4.95</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Wheat&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">40</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Jan &#39;25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20250131&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2025-01-31T06:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2025-01-01T06:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-1&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;545&#39;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4166165</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.5</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">4.95</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;546&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@W5H&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.55</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">5.07</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Wheat&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#ae81ff">40</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;July &#39;25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20250731&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2025-07-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2025-07-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-1&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;562&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4245212</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8442</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.55</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">5.07</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;563&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@W5N&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">0.02</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.83</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Cash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240831&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-08-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-08-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4101524</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8443</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Delphos&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">0.02</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.83</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.13</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.68</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;FH Sept&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240930&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-09-30T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-09-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4110668</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8443</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Delphos&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.13</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.68</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.38</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.43</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;New 24&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20241031&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-10-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-10-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4146101</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8443</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Delphos&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.38</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.43</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.18</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.8</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Jan 25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20250131&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2025-01-31T06:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2025-01-01T06:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;998&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4166167</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8443</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Delphos&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.18</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.8</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;998&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S5F&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.13</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.68</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Cash&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240831&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-08-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-08-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4101525</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8444</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Decatur&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.13</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.68</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.18</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.63</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;FH Sept&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20240930&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-09-30T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-09-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4110669</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8444</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Decatur&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.18</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.63</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.36</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.45</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;New 24&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20241031&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2024-10-31T05:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2024-10-01T05:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4146102</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8444</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Decatur&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.36</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.45</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;980&#39;6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S4X&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;allowTransactions&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.13</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.85</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityDisplayName&#34;</span>: <span style="color:#e6db74">&#34;Soybeans&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;commodityId&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractDeliveryLabel&#34;</span>: <span style="color:#e6db74">&#34;Jan 25&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;contractMonthCode&#34;</span>: <span style="color:#e6db74">&#34;20250131&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;conversionUsed&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;convertedPrice&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deliveryPeriod&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;end&#34;</span>: <span style="color:#e6db74">&#34;2025-01-31T06:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;start&#34;</span>: <span style="color:#e6db74">&#34;2025-01-01T06:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresChange&#34;</span>: <span style="color:#e6db74">&#34;-0&#39;4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;futuresQuote&#34;</span>: <span style="color:#e6db74">&#34;998&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">4166173</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">8444</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Decatur&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;primaryPrice&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;basisPrice&#34;</span>: <span style="color:#ae81ff">-0.13</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cashPrice&#34;</span>: <span style="color:#ae81ff">9.85</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;currency&#34;</span>: <span style="color:#e6db74">&#34;USD&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;realTime&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;settlePrice&#34;</span>: <span style="color:#e6db74">&#34;998&#39;2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;symbol&#34;</span>: <span style="color:#e6db74">&#34;@S5F&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;unitOfMeasure&#34;</span>: <span style="color:#e6db74">&#34;Bushels&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div></div>
+</details>
+<p>Data is in a typical structure, and we will need to filter the data down to what we need. We do this with a bit of JavaScript in the next step.</p>
+<h2 id="phase-2">Phase 2</h2>
+<figure><img src="/img/Hackathon24/Phase2.png" width="65%">
+</figure>
+
+<p>We then go ahead and format the data coming off. This was one of the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some data from the JSON above. It was then able to write this JavaScript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it.</p>
+<blockquote>
+<p>&ldquo;In this n8n workflow, I created a function to dynamically generate SSML (Speech Synthesis Markup Language) for a TTS (Text-to-Speech) system that reports daily commodity prices. The workflow processes data by extracting and formatting relevant information, such as cash prices and futures changes, and composes it into a natural-sounding spoken report. The code includes logic to handle various cases, like specific locations or contract delivery labels, ensuring that the information is accurately conveyed in a user-friendly format. This automation is tailored for an IVR (Interactive Voice Response) system, enabling users to receive up-to-date commodity prices through voice prompts.&rdquo;</p>
+<p>– ChatGPT 4.0</p>
+</blockquote>
+<details>
+    <summary>JavaScript for formatting IVR Prompt for Azure TTS</summary>
+    <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFuturesDirection</span>(<span style="color:#a6e22e">futuresChange</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">futuresNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">futuresChange</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;&#39;&#34;</span>)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isNegative</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">futuresChange</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#e6db74">&#34;-&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;up&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">futuresNumber</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">isNegative</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;down&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">direction</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">futuresNumber</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">.`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getTruncatedInteger</span>(<span style="color:#a6e22e">decimalValue</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">decimalValue</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">date</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">month</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>.<span style="color:#a6e22e">toLocaleString</span>(<span style="color:#e6db74">&#39;default&#39;</span>, { <span style="color:#a6e22e">month</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;long&#39;</span> });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">day</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>.<span style="color:#a6e22e">getDate</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">year</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>.<span style="color:#a6e22e">getFullYear</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">ssml</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`&lt;speak version=&#34;1.0&#34; xmlns=&#34;http://www.w3.org/2001/10/synthesis&#34; xml:lang=&#34;en-US&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &lt;voice name=&#34;en-US-JennyNeural&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Closes for </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">month</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">day</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">year</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. `</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">items</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">item</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">commodity</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">json</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cashDollar</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTruncatedInteger</span>(<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">cashPrice</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cashCents</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">round</span>((<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">cashPrice</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">cashDollar</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cashFuture</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getFuturesDirection</span>(<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">futuresChange</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">displayName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">commodityDisplayName</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">`to </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">label</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">contractDeliveryLabel</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;Cash&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cash&#34;</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dateCode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">contractMonthCode</span>.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">yearPart</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dateCode</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">monthPart</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dateCode</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dateObject</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">yearPart</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">monthPart</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-01`</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dateObject</span>.<span style="color:#a6e22e">toLocaleString</span>(<span style="color:#e6db74">&#39;default&#39;</span>, { <span style="color:#a6e22e">month</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;long&#39;</span> <span style="color:#e6db74">}</span><span style="color:#e6db74">)},`</span>; <span style="color:#75715e">// Adding comma after the month
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Limit Delphos and Decatur to Cash only
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> ((<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;Delphos&#34;</span>) <span style="color:#f92672">||</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;Decatur&#34;</span>)) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">label</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;Cash&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ssml</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">displayName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">location</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">label</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">cashDollar</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> dollars and </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">cashCents</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> cents </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">cashFuture</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> `</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ssml</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`Commodity sales are based off the Redacted Website at Redacted.com 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Press star to return to the main menu or press pound to hear this information again
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &lt;/voice&gt;&lt;/speak&gt;`</span>;
+</span></span></code></pre></div></div>
+</details>
+<figure><img src="/img/Hackathon24/functionATTS.png" width="75%">
+</figure>
+
+<p>Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple REST API post call to <a href="https://eastus.tts.speech.microsoft.com/cognitiveservices/v1">https://eastus.tts.speech.microsoft.com/cognitiveservices/v1</a>.</p>
+<details>
+    <summary>I have provided a screenshot with headers that I used to get my WAV file. Click arrow to expand.</summary>
+    <div>
+        <img 
+            src="/img/Hackathon24/AzureTTS.png" 
+            alt="Azure TTS Screenshot"
+            style="width: 75%;"
+            class=""
+            loading="lazy"
+            style="max-width:100%; height:auto;"
+        >
+    </div>
+</details>
+<p>While this is all happening we go ahead and work in phase 3 for our approval stages for our message.</p>
+<h2 id="phase-3">Phase 3</h2>
+<figure><img src="/img/Hackathon24/Phase3.png" width="75%">
+</figure>
+
+<p>Phase 3 was unique as we decided to add in human intervention at least during this time, so we can verify it has the correct information for at least during our proof of concept period. We may move away from the physical approval method at some point and just post the info into the teams space.</p>
+<p>This was also new for me as I had never worked with a return webhook or teams card to make it look nice for the end user.</p>
+<blockquote>
+<p>“This script is a great example of leveraging JavaScript within n8n to create a seamless integration between IVR systems and Microsoft Teams. It dynamically constructs speech synthesis for commodity prices and sends an approval workflow to Teams, allowing for real-time decision-making. The code elegantly handles various edge cases, ensuring accurate and contextually appropriate communication across platforms.”</p>
+<p>– ChatGPT 4.0</p>
+</blockquote>
+<p>First step in the phase uses some JavaScript again from ChatGPT.</p>
+<details>
+    <summary>JavaScript for formatting for Teams Approval</summary>
+    <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Function to get futures direction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFuturesDirection</span>(<span style="color:#a6e22e">futuresChange</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">futuresNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">futuresChange</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;&#39;&#34;</span>)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isNegative</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">futuresChange</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#e6db74">&#34;-&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;up&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">futuresNumber</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">isNegative</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;down&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">direction</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">futuresNumber</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to truncate the integer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getTruncatedInteger</span>(<span style="color:#a6e22e">decimalValue</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">decimalValue</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">date</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">month</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>.<span style="color:#a6e22e">toLocaleString</span>(<span style="color:#e6db74">&#39;default&#39;</span>, { <span style="color:#a6e22e">month</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;long&#39;</span> });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">day</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>.<span style="color:#a6e22e">getDate</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">year</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>.<span style="color:#a6e22e">getFullYear</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">phonePhrase</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`Closes. for. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">month</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">day</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">year</span><span style="color:#e6db74">}</span><span style="color:#e6db74">...\n`</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">items</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">item</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">commodity</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">json</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cashDollar</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTruncatedInteger</span>(<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">cashPrice</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cashCents</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">round</span>((<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">cashPrice</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">cashDollar</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cashFuture</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getFuturesDirection</span>(<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">futuresChange</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">displayName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">commodityDisplayName</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;Scott / Van Wert&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">`to, </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">label</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">contractDeliveryLabel</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;Cash&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cash&#34;</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dateCode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">contractMonthCode</span>.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dateString</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dateCode</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dateCode</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dateCode</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dateObject</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date(<span style="color:#a6e22e">dateString</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dateObject</span>.<span style="color:#a6e22e">toLocaleString</span>(<span style="color:#e6db74">&#39;default&#39;</span>, { <span style="color:#a6e22e">month</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;long&#39;</span> });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Limit Delphos and Decatur to Cash only
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> ((<span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;Delphos&#34;</span>) <span style="color:#f92672">||</span> <span style="color:#a6e22e">commodity</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;Decatur&#34;</span>)) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">label</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;Cash&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">phrase</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">displayName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">location</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">label</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">cashDollar</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> dollars. and. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">cashCents</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> cents. </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">cashFuture</span><span style="color:#e6db74">}</span><span style="color:#e6db74">..\n`</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">phonePhrase</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">phrase</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">phonePhrase</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Commodity sales are based off Redacted Website at Redacted dot com...\nPress star to return to the main menu. Or press pound to hear this information again&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Get the resume URLs for approval and rejection
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">resumeUrlApprove</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$execution</span>.<span style="color:#a6e22e">resumeUrl</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;?response=approve&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">resumeUrlReject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$execution</span>.<span style="color:#a6e22e">resumeUrl</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;?response=reject&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Construct the JSON payload for Microsoft Teams with Markdown
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">teamsMessage</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;message&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;attachments&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;contentType&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/vnd.microsoft.card.adaptive&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;$schema&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;http://adaptivecards.io/schemas/adaptive-card.json&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AdaptiveCard&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1.2&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;body&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>          {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;TextBlock&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Please approve the following data update:&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;wrap&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>          {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;TextBlock&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">phonePhrase</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\n/g</span>, <span style="color:#e6db74">&#34;\n\n&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;wrap&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;actions&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>          {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Action.OpenUrl&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Approve&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">resumeUrlApprove</span>
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>          {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Action.OpenUrl&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Reject&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">resumeUrlReject</span>
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [{ <span style="color:#a6e22e">json</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">teamsMessage</span> }];
+</span></span></code></pre></div></div>
+</details>
+<p>Once this format is complete it posts that into the chat system.</p>
+<figure><img src="/img/Hackathon24/bot.png" width="65%">
+</figure>
+
+<p>The N8N workflow then waits for a webhook back. That will come back with a JSON reply with either approve and deny message. We then go ahead and hit that switch and determines which way we are going to go depending on the selection.</p>
+<p>Once that has been determined we send a message back to teams verifying that it was good to go and moved on to connecting to RingCentral to use JWT (JSON Web Token) to get a token for us to be able to communicate with Ring Central. ChatGPT was lovely at providing me the info needed on how JWT tokens work.</p>
+<blockquote>
+<p>&ldquo;JSON Web Tokens (JWT) are a secure and compact way to transmit information between parties as a JSON object. They consist of three parts: a header, a payload, and a signature, which ensure data integrity and authenticity. JWTs are commonly used for authorization in web applications, allowing servers to verify user identity without storing session data. They are versatile, being easy to include in URLs, headers, or cookies, and support both signing and encryption for added security. Overall, JWTs provide a stateless and efficient solution for handling user authentication and authorization.&rdquo;</p>
+<p>– ChatGPT 4.0</p>
+</blockquote>
+<p>Once that token comes in we go ahead and strip out the data we don&rsquo;t need and carry that onto where we merge all of our data together to simplify the request we are going to craft to send off to RingCentral.</p>
+<h2 id="phase-4">Phase 4</h2>
+<p>It seems like it has taken forever to get here but in this stage we cover uploading the WAV data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that officially pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3, and it will play that lovely WAV file for you.</p>
+<figure><img src="/img/Hackathon24/Phase4.png" width="75%">
+</figure>
+
+<details>
+    <summary>request to upload WAV IVR menu file</summary>
+    <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JSON" data-lang="JSON"><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;parameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://platform.RingCentral.com/restapi/v1.0/account/~/ivr-prompts&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;sendHeaders&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;headerParameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;parameters&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Authorization&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;=Bearer  {{ $json.access_token }}&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Content-Type&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;multipart/form-data&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;sendBody&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;contentType&#34;</span>: <span style="color:#e6db74">&#34;multipart-form-data&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;bodyParameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;parameters&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;name&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;=Prompt&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;parameterType&#34;</span>: <span style="color:#e6db74">&#34;formBinaryData&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;attachment&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;inputDataFieldName&#34;</span>: <span style="color:#e6db74">&#34;=data&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;options&#34;</span>: {}
+</span></span><span style="display:flex;"><span>      },
+</span></span></code></pre></div></div>
+</details>
+<details>
+    <summary>request to update IVR menu URI</summary>
+    <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;id&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;1c4b87d1-0f20-405a-94fd-5f769d25254c&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;RC Upload files&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;n8n-nodes-base.httpRequest&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;typeVersion&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">4.2</span><span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;position&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">2640</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">-200</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">},</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;parameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;PUT&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://platform.RingCentral.com/restapi/v1.0/account/~/ivr-menus/&lt;ID&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;sendHeaders&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;headerParameters&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;parameters&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Content-Type&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Authorization&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;=Bearer {{ $(&#39;Merge&#39;).item.json.access_token }}&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;sendBody&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;specifyBody&#34;</span>: <span style="color:#e6db74">&#34;json&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;jsonBody&#34;</span>: <span style="color:#e6db74">&#34;={\n  \&#34;prompt\&#34;: {\n    \&#34;audio\&#34;: {\n      \&#34;uri\&#34;: \&#34;{{ $json.uri }}\&#34;,\n      \&#34;id\&#34;: \&#34;{{ $json.id}}\&#34;\n    },\n    \&#34;mode\&#34;: \&#34;Audio\&#34;\n  },\n  \&#34;id\&#34;: \&#34;&lt;ID&gt;\&#34;\n}&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;options&#34;</span>: {}
+</span></span></code></pre></div></div>
+</details>
+<h2 id="all-done-not-quite">All done? Not quite&hellip;..</h2>
+<p>One challenge that neither ChatGPT nor I could solve was the WAV file is always named &ldquo;v1&rdquo; and if we changed the name with N8N we lost the binary data. The prompt upload would not respect the name field and always named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn&rsquo;t conducive if there was an issue or if they had other prompts they wanted to keep around.</p>
+<h2 id="phase-5">Phase 5</h2>
+<figure><img src="/img/Hackathon24/Phase5.png" width="75%">
+</figure>
+
+<p>This was a bit of a challenge due to having to array data and bringing it into flat data, so we had to break it down and then do another query to determine what was actually in used.</p>
+<p>To flatten looks similar in both functions</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ivrMenus</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$json</span>.<span style="color:#a6e22e">records</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ivrMenus</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">menu</span> =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">json</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">menu</span> };
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Once that data is flat we can then filter and compare data. We apply a simple filter that filters out any TTS prompts, so we are left with only audio prompts. This allows us to compare the IVR prompt audio file URIs and determine which ones are no longer used and remove them to keep the environment clean.</p>
+<h2 id="synopsis">Synopsis</h2>
+<p>This was a great project even if there were times I thought it was taking years off my life but with the help of ChatGPT as almost dare I say a colleague helping step through, talk, and learn. I learned about JWT&rsquo;s, formatting data, JavaScript, and troubleshooting API challenges with limited support.</p>
+<p>Check them out here <a href="https://n8n.io/">https://n8n.io/</a></p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li class="post-tag"><a href="/tags/automation"><span class="tag">Automation</span></a></li>
+        
+          <li class="post-tag"><a href="/tags/n8n"><span class="tag">N8N</span></a></li>
+        
+          <li class="post-tag"><a href="/tags/chatgpt"><span class="tag">ChatGPT</span></a></li>
+        
+      </ul>
+      
+      <div class="sharing">
+        <a class="share share-facebook" target="_blank" href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2fvmwareworld24%2fhackathon%2f" title="Share on Facebook">
+          <svg class="icon icon-facebook" fill="currentColor"><use xlink:href="#icon-facebook" /></svg>
+        </a>
+        <a class="share share-twitter" target="_blank" href="https://twitter.com/intent/tweet/?text=VMware%20Explore%20Hackathon%2024%20-%20Automating%20a%20phone%20IVR%20Message&amp;url=http%3a%2f%2flocalhost%3a1313%2fpost%2fvmwareworld24%2fhackathon%2f" title="Share on Twitter">
+          <svg class="icon icon-twitter" fill="currentColor"><use xlink:href="#icon-twitter" /></svg>
+        </a>
+      </div>
+    </footer>
+  </section>
+
+    <footer class="footer">
+  <p>Copyright © 2018-2024 Justin Brant</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/huyb1991/hugo-lamp" title="Hugo LAMP" target="_blank">LAMP</a>.</p>
+</footer>
+
+
+
+
+
+
+  </body>
+</html>
