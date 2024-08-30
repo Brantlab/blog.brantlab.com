@@ -42,7 +42,7 @@
     <meta name="twitter:site" content="@JustinBrant93" />
     <meta name="twitter:title" content="VMware Explore Hackathon 24 - Automating a phone IVR Message" />
     <meta name="twitter:description" content="What is the goal? This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don&rsquo;t you guys do something with ChatGPT." />
-    <meta name="twitter:image" content="http://localhost:1313/img/Hackathon24/Workflow.png" />
+    <meta name="twitter:image" content="http://localhost:1313/img/Hackathon24/group.jpg" />
   
 
 
@@ -277,7 +277,10 @@
     </header>
     
 
-    <article class="post-content"><h2 id="what-is-the-goal">What is the goal?</h2>
+    <article class="post-content"><a href="/img/Hackathon24/presenting2.jpg" target="_blank">
+    <img src="/img/Hackathon24/presenting2.jpg" style="width: 65%; max-width: 100%;" alt="">
+  </a>
+<h2 id="what-is-the-goal">What is the goal?</h2>
 <p>This year for the hackathon at VMware Explore I was unsure I would be able to attend, so I ended up being a walk in and sometimes those are the best projects and networking opportunities. My team originally was just talking about life with everything from Firefighting to the spiders in Australia. PowerCLI man came over and was like hey why don&rsquo;t you guys do something with ChatGPT. We decided to use a project I had actually worked on prior to arriving at the hackathon.</p>
 <h2 id="whats-the-problem">What&rsquo;s the problem?</h2>
 <p>My lovely wife works for a grain equity who is still modernizing their entire business. Let me set the stage for you, You walk into their office, and they will have wood paneling, They had a phone system but was limited to each facility and was not interconnected between sites. Not related but made this request possible is we migrated them off old copper and onto a VoIP solution through RingCentral. Before this they would record a voicemail message every night with grain bid information for farmers. Essentially it&rsquo;s their version of the stock market. This was a very manual process.</p>
@@ -287,16 +290,16 @@
 <p>I don&rsquo;t want to get out into the weeds yet on the process that actually works, but this is pretty relevant. I had all this setup and running for a few weeks but RingCentral&rsquo;s IVR system leaves a little to be desired along with their documentation. We would push the same prompt via API, and it would be reflected in the UI and such, but it would never update when you called the system. There were no errors. This could be some random characters in the message it did not like. We struggled with commas for a while then we swapped to periods to create &ldquo;breaths&rdquo; in the correct places for the message but then that all but stopped working. We decided that we needed to move to a different automation.</p>
 <h2 id="integration-hell-new-plan">Integration hell? New plan?</h2>
 <p>Ok so now begins the rabbit hole of dealing with binary WAV files and Azure TTS services and learning all the things.</p>
-<figure><img src="/img/Hackathon24/Workflow.png" width="75%">
-</figure>
-
+<a href="/img/Hackathon24/Workflow.png" target="_blank">
+    <img src="/img/Hackathon24/Workflow.png" style="width: 85%; max-width: 100%;" alt="Workflow Image">
+  </a>
 <p>The new goal was to use RingCentral prompt with a crafted WAV file and upload it to RingCentral and design some sort of approval process. The wife&rsquo;s company does have a corporate Office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc.</p>
 <p>Ok I seem to have a plan. Let&rsquo;s go ahead and work through this.</p>
 <h2 id="phase-1">Phase 1</h2>
 <p>We began by creating a new N8N workflow with a time based trigger. This only needs kicked off once a day at 2:45 PM EST time and leads right into an API call to DTN that gets grain data. Data comes back as JSON and I will include a snippet of that data.</p>
-<figure><img src="/img/Hackathon24/Phase1.png" width="35%">
-</figure>
-
+<a href="/img/Hackathon24/Phase1.png" target="_blank">
+    <img src="/img/Hackathon24/Phase1.png" style="width: 35%; max-width: 100%;" alt="">
+  </a>
 <details>
     <summary>JSON of Data example</summary>
     <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
@@ -899,9 +902,9 @@
 </details>
 <p>Data is in a typical structure, and we will need to filter the data down to what we need. We do this with a bit of JavaScript in the next step.</p>
 <h2 id="phase-2">Phase 2</h2>
-<figure><img src="/img/Hackathon24/Phase2.png" width="65%">
-</figure>
-
+<a href="/img/Hackathon24/Phase2.png" target="_blank">
+    <img src="/img/Hackathon24/Phase2.png" style="width: 65%; max-width: 100%;" alt="">
+  </a>
 <p>We then go ahead and format the data coming off. This was one of the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some data from the JSON above. It was then able to write this JavaScript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it.</p>
 <blockquote>
 <p>&ldquo;In this n8n workflow, I created a function to dynamically generate SSML (Speech Synthesis Markup Language) for a TTS (Text-to-Speech) system that reports daily commodity prices. The workflow processes data by extracting and formatting relevant information, such as cash prices and futures changes, and composes it into a natural-sounding spoken report. The code includes logic to handle various cases, like specific locations or contract delivery labels, ensuring that the information is accurately conveyed in a user-friendly format. This automation is tailored for an IVR (Interactive Voice Response) system, enabling users to receive up-to-date commodity prices through voice prompts.&rdquo;</p>
@@ -966,9 +969,9 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &lt;/voice&gt;&lt;/speak&gt;`</span>;
 </span></span></code></pre></div></div>
 </details>
-<figure><img src="/img/Hackathon24/functionATTS.png" width="75%">
-</figure>
-
+<a href="/img/Hackathon24/functionATTS.png" target="_blank">
+    <img src="/img/Hackathon24/functionATTS.png" style="width: 75%; max-width: 100%;" alt="">
+  </a>
 <p>Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple REST API post call to <a href="https://eastus.tts.speech.microsoft.com/cognitiveservices/v1">https://eastus.tts.speech.microsoft.com/cognitiveservices/v1</a>.</p>
 <details>
     <summary>I have provided a screenshot with headers that I used to get my WAV file. Click arrow to expand.</summary>
@@ -985,9 +988,9 @@
 </details>
 <p>While this is all happening we go ahead and work in phase 3 for our approval stages for our message.</p>
 <h2 id="phase-3">Phase 3</h2>
-<figure><img src="/img/Hackathon24/Phase3.png" width="75%">
-</figure>
-
+<a href="/img/Hackathon24/Phase3.png" target="_blank">
+    <img src="/img/Hackathon24/Phase3.png" style="width: 75%; max-width: 100%;" alt="">
+  </a>
 <p>Phase 3 was unique as we decided to add in human intervention at least during this time, so we can verify it has the correct information for at least during our proof of concept period. We may move away from the physical approval method at some point and just post the info into the teams space.</p>
 <p>This was also new for me as I had never worked with a return webhook or teams card to make it look nice for the end user.</p>
 <blockquote>
@@ -1098,9 +1101,9 @@
 </span></span></code></pre></div></div>
 </details>
 <p>Once this format is complete it posts that into the chat system.</p>
-<figure><img src="/img/Hackathon24/bot.png" width="65%">
-</figure>
-
+<a href="/img/Hackathon24/bot.png" target="_blank">
+    <img src="/img/Hackathon24/bot.png" style="width: 65%; max-width: 100%;" alt="">
+  </a>
 <p>The N8N workflow then waits for a webhook back. That will come back with a JSON reply with either approve and deny message. We then go ahead and hit that switch and determines which way we are going to go depending on the selection.</p>
 <p>Once that has been determined we send a message back to teams verifying that it was good to go and moved on to connecting to RingCentral to use JWT (JSON Web Token) to get a token for us to be able to communicate with Ring Central. ChatGPT was lovely at providing me the info needed on how JWT tokens work.</p>
 <blockquote>
@@ -1110,9 +1113,9 @@
 <p>Once that token comes in we go ahead and strip out the data we don&rsquo;t need and carry that onto where we merge all of our data together to simplify the request we are going to craft to send off to RingCentral.</p>
 <h2 id="phase-4">Phase 4</h2>
 <p>It seems like it has taken forever to get here but in this stage we cover uploading the WAV data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that officially pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3, and it will play that lovely WAV file for you.</p>
-<figure><img src="/img/Hackathon24/Phase4.png" width="75%">
-</figure>
-
+<a href="/img/Hackathon24/Phase4.png" target="_blank">
+    <img src="/img/Hackathon24/Phase4.png" style="width: 75%; max-width: 100%;" alt="">
+  </a>
 <details>
     <summary>request to upload WAV IVR menu file</summary>
     <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JSON" data-lang="JSON"><span style="display:flex;"><span>    {
@@ -1189,9 +1192,9 @@
 <h2 id="all-done-not-quite">All done? Not quite&hellip;..</h2>
 <p>One challenge that neither ChatGPT nor I could solve was the WAV file is always named &ldquo;v1&rdquo; and if we changed the name with N8N we lost the binary data. The prompt upload would not respect the name field and always named the prompt the same as the file. We then had multiple v1 files sitting in the UI in RingCentral and that just isn&rsquo;t conducive if there was an issue or if they had other prompts they wanted to keep around.</p>
 <h2 id="phase-5">Phase 5</h2>
-<figure><img src="/img/Hackathon24/Phase5.png" width="75%">
-</figure>
-
+<a href="/img/Hackathon24/Phase5.png" target="_blank">
+    <img src="/img/Hackathon24/Phase5.png" style="width: 75%; max-width: 100%;" alt="">
+  </a>
 <p>This was a bit of a challenge due to having to array data and bringing it into flat data, so we had to break it down and then do another query to determine what was actually in used.</p>
 <p>To flatten looks similar in both functions</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ivrMenus</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$json</span>.<span style="color:#a6e22e">records</span>;

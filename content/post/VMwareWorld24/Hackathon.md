@@ -1,12 +1,12 @@
 ---
 title: "VMware Explore Hackathon 24 - Automating a phone IVR Message"
 author: "Justin Brant"
-cover: "/img/Hackathon24/Workflow.png"
+cover: "/img/Hackathon24/group.jpg"
 tags: ["Automation", N8N, ChatGPT]
 date: 2024-08-26
 draft: false
 ---
-
+{{< clickable-figure src="/img/Hackathon24/presenting2.jpg" width=65% layout="responsive" >}}
 
 ## What is the goal?
 
@@ -28,7 +28,7 @@ I don't want to get out into the weeds yet on the process that actually works, b
 
 Ok so now begins the rabbit hole of dealing with binary WAV files and Azure TTS services and learning all the things. 
 
-{{< figure src="/img/Hackathon24/Workflow.png" width=75% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/Workflow.png" width="85%" alt="Workflow Image" >}}
 
 
 The new goal was to use RingCentral prompt with a crafted WAV file and upload it to RingCentral and design some sort of approval process. The wife's company does have a corporate Office 365 and are utilizing teams for that. I thought this would be a perfect and elegant solution to make a room so select people could approve via card in teams if she was off, sick, etc. 
@@ -39,7 +39,7 @@ Ok I seem to have a plan. Let's go ahead and work through this.
 
 We began by creating a new N8N workflow with a time based trigger. This only needs kicked off once a day at 2:45 PM EST time and leads right into an API call to DTN that gets grain data. Data comes back as JSON and I will include a snippet of that data. 
 
-{{< figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/Phase1.png" width=35% layout="responsive" >}}
 
 {{< details title="JSON of Data example" >}}
 ``` json
@@ -648,7 +648,7 @@ Data is in a typical structure, and we will need to filter the data down to what
 
 ## Phase 2
 
-{{< figure src="/img/Hackathon24/Phase2.png" width=65% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/Phase2.png" width=65% layout="responsive" >}}
 
 We then go ahead and format the data coming off. This was one of the first interactions with ChatGPT on this project. I fed it the phone prompt my user had and gave it some expectations on where numbers needed to land and with some data from the JSON above. It was then able to write this JavaScript. To further help me after I start writing this I had it write its own blurb about its code. Note I did verify the code and verified nothing malicious was pertained in it. 
 
@@ -717,7 +717,7 @@ ssml += `Commodity sales are based off the Redacted Website at Redacted.com
 ```
 {{< /details >}}
 
-{{< figure src="/img/Hackathon24/functionATTS.png" width=75% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/functionATTS.png" width=75% layout="responsive" >}}
 
 
 Once this has happened I went ahead and used ChatGPT to help me get the info over to Azure TTS which was pretty uneventful since that is a simple REST API post call to https://eastus.tts.speech.microsoft.com/cognitiveservices/v1.
@@ -734,7 +734,7 @@ While this is all happening we go ahead and work in phase 3 for our approval sta
 
 ## Phase 3
 
-{{< figure src="/img/Hackathon24/Phase3.png" width=75% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/Phase3.png" width=75% layout="responsive" >}}
 
 Phase 3 was unique as we decided to add in human intervention at least during this time, so we can verify it has the correct information for at least during our proof of concept period. We may move away from the physical approval method at some point and just post the info into the teams space. 
 
@@ -852,7 +852,7 @@ return [{ json: teamsMessage }];
 
 Once this format is complete it posts that into the chat system. 
 
-{{< figure src="/img/Hackathon24/bot.png" width=65% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/bot.png" width=65% layout="responsive" >}}
 
 The N8N workflow then waits for a webhook back. That will come back with a JSON reply with either approve and deny message. We then go ahead and hit that switch and determines which way we are going to go depending on the selection. 
 
@@ -868,7 +868,7 @@ Once that token comes in we go ahead and strip out the data we don't need and ca
 
 It seems like it has taken forever to get here but in this stage we cover uploading the WAV data we got from Azure TTS. Once that has been uploaded RingCentral provides a URI and ID number that we translate into the last call that officially pushes that voice file into production. That last call goes into the IVR menu itself and sets it to the new prompt URI. You can then call their main number and click option 3, and it will play that lovely WAV file for you. 
 
-{{< figure src="/img/Hackathon24/Phase4.png" width=75% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/Phase4.png" width=75% layout="responsive" >}}
 
 {{< details title="request to upload WAV IVR menu file" >}}
 ``` JSON
@@ -952,7 +952,7 @@ One challenge that neither ChatGPT nor I could solve was the WAV file is always 
 
 ## Phase 5 
 
-{{< figure src="/img/Hackathon24/Phase5.png" width=75% layout="responsive" >}}
+{{< clickable-figure src="/img/Hackathon24/Phase5.png" width=75% layout="responsive" >}}
 
 This was a bit of a challenge due to having to array data and bringing it into flat data, so we had to break it down and then do another query to determine what was actually in used. 
 

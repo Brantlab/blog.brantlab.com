@@ -5,11 +5,11 @@
 
 {{ partial "adsense-sticky.html" . }}
 
-{{ if .Site.GoogleAnalytics }}
+{{ if .Site.Config.Services.GoogleAnalytics.ID }}
 <amp-analytics type=googleanalytics>
   <script type=application/json>
     {
-      "vars": { "account": {{ .Site.GoogleAnalytics }} },
+      "vars": { "account": {{ .Site.Config.Services.GoogleAnalytics.ID }} },
       "triggers": { "trackPageview": { "on": "visible", "request": "pageview" } }
     }
   </script>

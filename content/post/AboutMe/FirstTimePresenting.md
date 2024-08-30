@@ -1,7 +1,7 @@
 ---
 title: "First Time Presenting"
 author: "Justin Brant"
-# cover: "/img/cover.jpg"
+# cover: "/img/FirstTimePresenting/cover.jpg"
 tags: ["About Me", "VMUG"]
 date: 2020-01-15T14:19:13-04:00
 draft: false
@@ -13,8 +13,8 @@ Our VMUG did not have a presenter lined up, so I figured it was time to pay my �
 # How did I prepare? 
 Who prepares? I am a millennial so we kind of wing it and hope for the best….. Lol jk. I started by making the executive decision to pre-record my demos beforehand to not tempt the demo gods about how they could mess me up on that evening. I did some very rudimentary and crude quick 5-10 second clips on ESXTOP and its various screens. I did change all the font to yellow on black, which was one of my best moves during this whole endeavor. I fumbled through taking various videos and cropping them so that they could be autoplayed in the PowerPoint and would almost look like I was doing it live. “Look Ma! No hands!” Something I discovered along the way is that getting a screenshot of a spreadsheet to be legible in PowerPoint is quite difficult.
 
-{{< figure src="/img/FirstSlide.png" width=95% layout="responsive" >}}
-{{< figure src="/img/ESXTOP.png" width=95% layout="responsive" >}}
+{{< figure src="/img/FirstTimePresenting/FirstSlide.png" width=95% layout="responsive" >}}
+{{< figure src="/img/FirstTimePresenting/ESXTOP.png" width=95% layout="responsive" >}}
 
 # Day Of
 I ran through my slides 3 times to make sure everything looked good. I even added some notes under the slides that I failed to use during my presentation. Three hours before the presentation, I realize I didn't have a presentation remote to run the slides. So, I was either going to nervously move around the stage while presenting or risk being stuck in front of my laptop where I could panic the most. I quickly reached out to another VMUG member to pick one up for the presentation. As an added bonus our VMUG would now have one in our kit for future use. 
@@ -24,7 +24,7 @@ I packed up and took off towards town. I live in the middle of “nowhere”, wh
 
 # Presentation Time!
 
-{{< figure src="/img/IMG_0702.jpeg" width=95% >}}
+{{< figure src="/img/FirstTimePresenting/IMG_0702.jpeg" width=95% >}}
 
 David Prows, The Man, The Legend, The vExpert, and Fellow VMUG Leader kicked us off with our standard opening with the agenda and various news that our VMUG Members would find useful. Before I knew it, I was mic'd up, on stage, being recorded and ready to go. `<Link to youtube at a later date>` I went through some of my opening slides covering “Who I Am?” then jumped right into the ESXTOP information describing %RDY and various columns that I have documented and sourced in my PowerPoint. Then it happens...
 

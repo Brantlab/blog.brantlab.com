@@ -7,7 +7,7 @@ date: 2023-04-27
 draft: false
 ---
 
-{{< figure src="/img/ps-summit.png" width=25% layout="responsive" >}}
+{{< figure src="/img/PS_Summit23/ps-summit.png" width=25% layout="responsive" >}}
 
 ## What did I get into?
 

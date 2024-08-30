@@ -6,8 +6,15 @@
     <description>Recent content in Conferences on Justin Brant</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/conferences/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VMware Explore 2024</title>
+      <link>http://localhost:1313/post/vmwareworld24/general/</link>
+      <pubDate>Fri, 30 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/vmwareworld24/general/</guid>
+      <description>How was it? The Conference was different from years past even if the design and marketing around the venue was reused. It was the same footprint, but the expo hall definitely seemed to lack a lot of familiar faces. Even in general attendance I definitliy missed a lot of faces that you have seen in many years passed. I went back and reviewed the general session on information regarding attendance and did not find anything in the re-watch.</description>
+    </item>
     <item>
       <title>Attending Powershell Summit as a sysadmin</title>
       <link>http://localhost:1313/post/powershell-conf-23/attending/</link>
